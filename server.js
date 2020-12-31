@@ -12,5 +12,9 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
+app.get('/airtable', (req, res) => {
+  res.send('Hello Airtable');
+});
+
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);

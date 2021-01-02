@@ -33,6 +33,10 @@ app.get('/airtable', routeMiddleware, (req, res) => {
   res.send(`Hello Airtable from Host ${os.hostname()} Process ${process.pid}`);
 });
 
+app.get('/2021', routeMiddleware, (req, res) => {
+  res.send(`Hello 2021 from Host ${os.hostname()} Process ${process.pid}`);
+});
+
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 logProcessInfo();

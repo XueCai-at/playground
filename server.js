@@ -16,25 +16,21 @@ function logProcessInfo() {
     console.log(`This platform is ${process.platform}`);
     console.log(`Current gid: ${process.getegid()} ${process.getgid()}`);
     console.log(`Current uid: ${process.geteuid()} ${process.getuid()}`);
-    console.log(`Process env: ${JSON.stringify(process.env, null, 4)}`);
-    console.log(`Process argv: ${JSON.stringify(process.argv, null, 4)}`);
+    console.log(`Process env: ${JSON.stringify(process.env)}`);
+    console.log(`Process argv: ${JSON.stringify(process.argv)}`);
+    console.log(`Process resource usage: ${JSON.stringify(process.resourceUsage())}`);
 }
 function routeMiddleware(req, res, next) {
     console.log(`Host ${os.hostname()} Process ${process.pid} got a request on route ${req.path}`);
-    console.log(`Process resource usage: ${JSON.stringify(process.resourceUsage(), null, 4)}`);
     next();
 }
 
-app.get('/', routeMiddleware, (req, res) => {
+app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
 app.get('/airtable', routeMiddleware, (req, res) => {
-  res.send('Hello Airtable');
-});
-
-app.get('/liutas', routeMiddleware, (req, res) => {
-  res.send('Hello Liutas');
+  res.send(`Hello Airtable from Host ${os.hostname()} Process ${process.pid}`);
 });
 
 app.listen(PORT, HOST);

@@ -26,7 +26,9 @@ function routeMiddleware(req, res, next) {
 }
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  // fail health check
+  res.sendStatus(500);
+  // res.send('Hello World');
 });
 
 app.get('/airtable', routeMiddleware, (req, res) => {

@@ -21,12 +21,19 @@ You can visit the running ECS service at
 - Follow [this guide](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/).
 
 Try locally by running
-    docker build --build-arg COMMIT_HASH=42 -t xue-test .
-    docker run -p 8080:8080 -d xue-test
+
+```console
+docker build --build-arg COMMIT_HASH=42 -t xue-test .
+docker run -p 8080:8080 -d xue-test
+```
+
 Then visit http://0.0.0.0:8080 or http://0.0.0.0:8080/version
 
 You can also view server logs by running
-    docker logs <container_id>
+
+```console
+docker logs <container_id>
+```
 
 ## CodeBuild the app (buildspec.yml)
 In a Continuous Deployment (CD) setup, we don't want to build the docker image on our laptops.
@@ -37,8 +44,8 @@ Instead, we build the image using AWS CodeBuild.
 - Environment variable *CODEBUILD_RESOLVED_SOURCE_VERSION* tells which code version is built.
 - The built docker image is pushed to AWS ECR *$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest*
 - Build artifacts include:
--- imagedefinitions.json: input for pipeline 1's deploy stage
--- taskdef.json, appspec.yml: input for pipeline 2's deploy stage
+    - *imagedefinitions.json*: input for pipeline 1's deploy stage
+    - *taskdef.json*, *appspec.yml*: input for pipeline 2's deploy stage
 - Because Docker Hub rate limit pulls, I created a separate free account (*xuecaiat*) instead of sharing fate with other AWS CodeBuild projects.
 
 ## Launch the dockerized app in AWS ECS (taskdef.json)

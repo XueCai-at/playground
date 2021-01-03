@@ -27,8 +27,12 @@ function routeMiddleware(req, res, next) {
 
 app.get('/', (req, res) => {
   // fail health check
-  res.sendStatus(500);
-  // res.send('Hello World');
+  // res.sendStatus(500);
+  res.send('Hello World');
+});
+
+app.get('/version', routeMiddleware, (req, res) => {
+  res.send(`Hello from Host ${os.hostname()} Process ${process.pid}. Code version: ${process.env.CODE_VERSION}`);
 });
 
 app.get('/airtable', routeMiddleware, (req, res) => {

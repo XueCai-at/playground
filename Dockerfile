@@ -15,5 +15,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+ARG COMMIT_HASH
+ENV CODE_VERSION=${COMMIT_HASH}
+
 EXPOSE 8080
 CMD [ "node", "server.js" ]

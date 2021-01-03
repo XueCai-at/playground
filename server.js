@@ -26,9 +26,9 @@ function routeMiddleware(req, res, next) {
 }
 
 app.get('/', (req, res) => {
-  // fail health check
-  res.sendStatus(500);
-  // res.send('Hello World');
+  // uncomment to fail health check
+  // res.sendStatus(500);
+  res.send('Hello World');
 });
 
 app.get('/version', routeMiddleware, (req, res) => {

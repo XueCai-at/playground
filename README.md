@@ -6,7 +6,7 @@ and deploy (with AWS CodeBuild) it.
 
 The web app is being continously deployed by two pipelines (with AWS CodePipeline).
 - pipeline 1: Source (GitHub) -> Build (CodeBuild) -> Deploy (ECS standard rolling-update deployment)
-- pipeline 2: Source (GitHub) -> Build (CodeBuild) -> Deploy (CodeDeploy blue/green deployment to ECS)
+- pipeline 2: Source (GitHub) -> Build (CodeBuild) -> Deploy (CodeDeploy blue/green deployment to ECS, with [ECSCanary10Percent5Minutes](https://aws.amazon.com/blogs/containers/aws-codedeploy-now-supports-linear-and-canary-deployments-for-amazon-ecs/))
 
 You can visit the running ECS service at
 - pipeline 1: http://ec2co-ecsel-5nde7v2f4a7a-1733327502.us-west-2.elb.amazonaws.com:8080/version

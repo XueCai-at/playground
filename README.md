@@ -91,7 +91,7 @@ Below are the two ALBs' public DNS names:
     - Docker image stored in AWS ECR
     - imagedefinitions.json (for ECS standard rolling-update deployment)
 
-- Follow [this guide](https://docs.aws.amazon.com/codepipeline/latest/userguide/ecs-cd-pipeline.html).
+- Follow [this guide](https://docs.aws.amazon.com/codepipeline/latest/userguide/ecs-cd-pipeline.html) and [this guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html).
 
 When an ECS service is created, we need to select a deployment controller which can't be changed later.
 If selecting rolling update, the ECS service is set up with
@@ -112,7 +112,7 @@ If new tasks fail health check, eventually the deployment will timeout, leaving 
     - Docker image stored in AWS ECR
     - taskdef.json, appspec.yml (for ECS blue/green deployment with CodeDeploy)
 
-- Follow [this guide](https://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-ecs-ecr-codedeploy.html).
+- Follow [this guide](https://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-ecs-ecr-codedeploy.html) and [this guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-bluegreen.html).
 
 When an ECS service is created with CodeDeploy blue/green deployment controller, the ECS service is set up with
 - 1 ALB

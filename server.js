@@ -51,6 +51,10 @@ app.get('/2023', routeMiddleware, (req, res) => {
   res.send(`Hello 2023 from Host ${os.hostname()} Process ${process.pid}`);
 });
 
+app.get('/2024', routeMiddleware, (req, res) => {
+  res.send(`Hello 2024 from Host ${os.hostname()} Process ${process.pid}`);
+});
+
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 logProcessInfo();

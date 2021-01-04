@@ -6,7 +6,7 @@ const GreetingType = {
 const serverConfig = {
     greetingType: GreetingType.HI,
     showHostname: true,
-    showProcessPid: true,
+    showProcessPid: false,
 }
 
 console.log(JSON.stringify(serverConfig));

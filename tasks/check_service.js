@@ -8,7 +8,7 @@ const options = {
   method: 'GET'
 }
 
-console.log(`Running at time ${(new Date(Date.now())).toUTCString()} with code version ${process.env.CODE_VERSIO}`);
+console.log(`Running at time ${(new Date(Date.now())).toUTCString()} with code version ${process.env.CODE_VERSION}`);
 
 const req = http.request(options, res => {
   console.log(`statusCode: ${res.statusCode}`)

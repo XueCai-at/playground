@@ -59,6 +59,10 @@ app.get('/martin', routeMiddleware, (req, res) => {
   res.send(`Hello martin from Host ${os.hostname()} Process ${process.pid}`);
 });
 
+app.get('/doci', routeMiddleware, (req, res) => {
+  res.send(`Hello doci from Host ${os.hostname()} Process ${process.pid}`);
+});
+
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 logProcessInfo();

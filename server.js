@@ -2,6 +2,7 @@
 
 const express = require('express');
 const os = require("os");
+const http = require('http');
 
 // Constants
 const PORT = 8080;
@@ -37,6 +38,33 @@ app.get('/version', routeMiddleware, (req, res) => {
 
 app.get('/airtable', routeMiddleware, (req, res) => {
   res.send(`Hello Airtable from Host ${os.hostname()} Process ${process.pid}`);
+});
+
+// calls backend service
+app.get('/greeting', routeMiddleware, (req, res) => {
+  const options = {
+    hostname: 'xue-test-backend',  // k8s service discovery hostname, port is mapped to 80
+    // hostname: 'localhost',
+    // port: 5000,
+    path: '/greeting',
+    method: 'GET'
+  }
+  const backendReq = http.request(options, backendRes => {
+    console.log(`Backend service returns statusCode: ${backendRes.statusCode}`)
+
+    let data = '';
+    backendRes.on('data', chunk => {
+      data += chunk;
+    })
+
+    backendRes.on('end', () => {
+      res.send(JSON.stringify(data));
+    })
+  })
+  backendReq.on('error', error => {
+    res.status(500).send(`Backend service returned error: ${JSON.stringify(error)}`);
+  })
+  backendReq.end();
 });
 
 app.get('/2021', routeMiddleware, (req, res) => {

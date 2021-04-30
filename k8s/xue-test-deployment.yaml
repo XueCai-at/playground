@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xue-test
+  labels:
+    app: xue-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: xue-test
+  template:
+    metadata:
+      labels:
+        app: xue-test
+    spec:
+      containers:
+      - name: xue-test
+        image: 390228940094.dkr.ecr.us-east-1.amazonaws.com/xue-test:v5
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
